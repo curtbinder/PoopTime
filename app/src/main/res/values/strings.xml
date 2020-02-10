@@ -7,4 +7,7 @@
     <string name="type_hard">Hard</string>
     <string name="type_loose">Loose</string>
     <string name="notes">Notes</string>
+    <string name="quick_summary">Quick Summary:</string>
+    <string name="days_since_label">Days Since Last Poop:</string>
+    <string name="last_poop_label">Last Poop:</string>
 </resources>

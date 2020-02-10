@@ -58,13 +58,14 @@
         app:layout_constraintTop_toBottomOf="@id/buttonPanel">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/type_normal" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioHard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -72,7 +73,7 @@
             android:text="@string/type_hard" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioLoose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/type_loose" />
@@ -91,5 +92,75 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioPanel" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+    <TextView
+        android:id="@+id/quickSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/quick_summary"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/daysSinceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/days_since_label"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickSummary" />
+
+    <TextView
+        android:id="@+id/daysSince"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/daysSinceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quickSummary"
+        tools:text="200" />
+
+    <TextView
+        android:id="@+id/lastPoopLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/last_poop_label"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daysSinceLabel" />
+
+    <TextView
+        android:id="@+id/lastPoop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        android:text=""
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lastPoopLabel"
+        app:layout_constraintTop_toBottomOf="@+id/daysSinceLabel"
+        tools:text="Monday March 1, 2019 3:42 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

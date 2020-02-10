@@ -1,25 +1,39 @@
 package info.curtbinder.pooptime;
 
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PoopFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PoopFragment extends Fragment
     implements View.OnClickListener {
 
 
+    public static final String TAG = PoopFragment.class.getSimpleName();
+
+    private EditText notes;
+    private RadioGroup types;
+    private RadioButton normal;
+    private TextView lastPoop;
+    private TextView daysSince;
 
     public PoopFragment() {
         // Required empty public constructor
@@ -52,6 +66,11 @@ public class PoopFragment extends Fragment
     }
 
     private void findViews(View v) {
+        notes = v.findViewById(R.id.notes);
+        types = v.findViewById(R.id.radioPanel);
+        normal = v.findViewById(R.id.radioNormal);
+        lastPoop = v.findViewById(R.id.lastPoop);
+        daysSince = v.findViewById(R.id.daysSince);
 
         // set the onclick listeners
         v.findViewById(R.id.btnNow).setOnClickListener(this);
@@ -59,32 +78,109 @@ public class PoopFragment extends Fragment
     }
 
     private void updateDisplay() {
+        // Clear the fields
+        notes.setText("");
+        normal.toggle();
+        // refresh the quick summary
+        final Context ctx = getContext();
+        String s = DBCommands.getDaysSinceLastPoop(ctx);
+        daysSince.setText(s);
+        s = DBCommands.getLastPoopDate(ctx);
+        lastPoop.setText(s);
 
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        // TODO get the rest of the data from the fields
+        String sNotes = notes.getText().toString();
+        int iType = getTypeFromRadioId(types.getCheckedRadioButtonId());
         switch (id) {
             case R.id.btnNow: {
-                // TODO get current date and time
-                logNow();
+                logNow(iType, sNotes);
                 break;
             }
             case R.id.btnOther: {
-                // TODO prompt for date and time
-                logOther();
+                logOther(iType, sNotes);
                 break;
             }
         }
     }
 
-    private void logNow() {
-        // TODO log now
+    private int getTypeFromRadioId(int radioID) {
+        RadioButton r = (RadioButton)getActivity().findViewById(radioID);
+        int retVal = 0;
+        String text = r.getText().toString();
+        switch(text) {
+            default:
+            case "Normal":
+                retVal = 0;
+                break;
+            case "Hard":
+                retVal = 1;
+                break;
+            case "Loose":
+                retVal = 2;
+                break;
+        }
+        return retVal;
     }
 
-    private void logOther() {
-        // TODO log other
+    private void logNow(int type, String notes) {
+        log(DBCommands.getDefaultDateFormat().format(Calendar.getInstance().getTime()), type, notes);
+    }
+
+    private void logOther(final int type, final String notes) {
+        // display popup prompting for the date
+        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.DATE, -1);
+        DatePickerDialog dp = new DatePickerDialog(getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        callTimePicker(year, month, dayOfMonth, type, notes);
+                    }
+                },
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
+        dp.show();
+    }
+
+    private void callTimePicker(final int year, final int month, final int dayOfMonth, final int type, final String notes) {
+        Calendar cal = Calendar.getInstance();
+        TimePickerDialog tp = new TimePickerDialog(getContext(),
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //Log.d(TAG, "Chose: " + hourOfDay + ":" + minute);
+                        Calendar c = Calendar.getInstance();
+                        c.set(year, month, dayOfMonth, hourOfDay, minute);
+                        SimpleDateFormat dft = DBCommands.getDefaultDateFormat();
+                        String timestamp = dft.format(c.getTime());
+                        Log.d(TAG, "Chose: " + timestamp);
+                        log(timestamp, type, notes);
+                    }
+                },
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                false
+        );
+        tp.show();
+    }
+
+    private void log(String timestamp, int type, String notes) {
+        String fancyDate = DBCommands.getDisplayDate(timestamp);
+        Log.d(TAG, "Date: " + timestamp + "\nType: " + type + "\nNotes: " + notes);
+
+        long result = DBCommands.logPoop(getContext(), timestamp, type, notes);
+        if (result == DBCommands.ALREADY_LOGGED) {
+            Toast.makeText(getContext(), "Already logged poop on " + fancyDate, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(getContext(), "Added poop on " + fancyDate, Toast.LENGTH_SHORT).show();
+
+        updateDisplay();
     }
 }
