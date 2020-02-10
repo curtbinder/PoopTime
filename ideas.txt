@@ -1,0 +1,26 @@
+Have buttons at top of screen for quick entry
+Buttons:
+    Now - logs current date & time
+    Other - choose date & time
+Type:  Normal  Hard  Loose
+Notes: (Space for notes)
+
+Stats:
+ * Last Poop
+ * Days since last poop
+ * Poops this week
+
+ * Trending --- normally poop during specific time frame
+ * Time Frames of poops:
+    * Mornings - (5-12)
+    * Afternoons - (12-4)
+    * Evenings - (4-10)
+ * Days of Week stats (List days with # of poops for each day)
+
+DB: poop.db
+ * _id - autoinc
+ * timestamp - date & time
+ * type - enum of poop type (normal, hard, loose)
+ * notes - any additional notes
+
+
