@@ -9,6 +9,7 @@
         <item name="colorSecondary">@color/secondaryColor</item>
 
         <item name="textAppearanceHeadline1">@style/HeadlineOneAppearance</item>
+        <item name="textAppearanceHeadline2">@style/HeadlineTwoAppearance</item>
         <item name="textAppearanceBody1">@style/BodyOneAppearance</item>
     </style>
 
@@ -22,6 +23,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="HeadlineOneAppearance" parent="@style/TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+    <style name="HeadlineTwoAppearance" parent="@style/TextAppearance.MaterialComponents.Headline6">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>

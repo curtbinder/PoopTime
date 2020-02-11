@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="@string/db_authority"
+            android:name="info.curtbinder.pooptime.DBProvider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
 
 </manifest>

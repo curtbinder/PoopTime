@@ -85,7 +85,7 @@ public class PoopFragment extends Fragment
         final Context ctx = getContext();
         String s = DBCommands.getDaysSinceLastPoop(ctx);
         daysSince.setText(s);
-        s = DBCommands.getLastPoopDate(ctx);
+        s = DBCommands.getLastPoopDisplayDate(ctx);
         lastPoop.setText(s);
 
     }
@@ -109,21 +109,8 @@ public class PoopFragment extends Fragment
 
     private int getTypeFromRadioId(int radioID) {
         RadioButton r = (RadioButton)getActivity().findViewById(radioID);
-        int retVal = 0;
         String text = r.getText().toString();
-        switch(text) {
-            default:
-            case "Normal":
-                retVal = 0;
-                break;
-            case "Hard":
-                retVal = 1;
-                break;
-            case "Loose":
-                retVal = 2;
-                break;
-        }
-        return retVal;
+        return DBCommands.getTypeIntFromString(text);
     }
 
     private void logNow(int type, String notes) {
