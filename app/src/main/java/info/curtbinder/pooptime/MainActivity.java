@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 onNavigateCalendar();
                 return true;
             case R.id.action_about:
-                Toast.makeText(this, "About not implemented", Toast.LENGTH_SHORT).show();
+                navigateFragment(new AboutFragment());
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -39,6 +39,6 @@ public class PoopCalendarFragment extends Fragment implements OnDateSelectedList
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        Log.d("Calendar", "Date Selected: " + date.toString());
+        Log.d("Calendar", "Date Selected: " + date.toString() + ", selected: " + selected);
     }
 }

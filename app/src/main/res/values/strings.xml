@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Poop \"Log\"-ger</string>
     <string name="db_authority">info.curtbinder.pooptime.provider</string>
+    <string name="app_copyright">Copyright &#169; 2020</string>
+    <string name="app_author">Curt Binder</string>
     <string name="poop_label">Pooped?</string>
     <string name="now">Now</string>
     <string name="other">Other</string>
