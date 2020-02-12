@@ -39,6 +39,11 @@ public class DBCommands {
         return String.format("%d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
     }
 
+    // Formats ONLY the date, ignoring the time
+    public static String getDefaultDayOnlyFormatString(int day, int month, int year) {
+        return String.format("%d-%02d-%02d", year, month, day);
+    }
+
     public static String getDisplayDate(String sDate) {
         // Update format of date be 'Weekday, Month, DD, YYYY HH:MM AM|PM'
         String s = sDate;
@@ -110,6 +115,22 @@ public class DBCommands {
         Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
                 MainTable.COL_TIMESTAMP + " = ?",
                 new String[] {date}, null);
+        if ( c != null ) {
+            if (c.getCount() > 0) {
+                // logged
+                fRet = true;
+            }
+            c.close();
+        }
+        return fRet;
+    }
+
+    // Does the given day have any poops logged?
+    public static boolean isDayLogged(Context ctx, String date) {
+        boolean fRet = false;
+        Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
+                MainTable.COL_TIMESTAMP + " like '" + date + "%'",
+                null, null);
         if ( c != null ) {
             if (c.getCount() > 0) {
                 // logged

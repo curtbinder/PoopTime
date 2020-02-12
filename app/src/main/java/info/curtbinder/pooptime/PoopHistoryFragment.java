@@ -27,6 +27,9 @@ import android.widget.TextView;
 public class PoopHistoryFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    // uri type
+    private static final String ARG_URI_TYPE = "uritype";
+
     private static final String[] FROM = {
             MainTable.COL_ID,
             MainTable.COL_TIMESTAMP,
@@ -37,7 +40,7 @@ public class PoopHistoryFragment extends ListFragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
         View v = inflater.inflate(R.layout.fragment_list_poop, container, false);
         ListView lv = v.findViewById(android.R.id.list);
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

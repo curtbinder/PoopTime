@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNavigateCalendar() {
-        Toast.makeText(this, "Calendar not implemented", Toast.LENGTH_SHORT).show();
+        navigateFragment(new PoopCalendarFragment());
     }
 
     public void onNavigateHistory() {
