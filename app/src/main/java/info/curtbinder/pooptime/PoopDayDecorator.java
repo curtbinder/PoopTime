@@ -9,13 +9,13 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
-public class PoopCalendarDayDecorator implements DayViewDecorator {
+public class PoopDayDecorator implements DayViewDecorator {
 
     // Drawable for the day
     private final Drawable poopDrawable;
     private final Context ctx;
 
-    public PoopCalendarDayDecorator(Context ctx) {
+    public PoopDayDecorator(Context ctx) {
         this.ctx = ctx;
         ShapeDrawable square = new ShapeDrawable(new RectShape());
         square.getPaint().setColor(ctx.getColor(R.color.primaryColor));

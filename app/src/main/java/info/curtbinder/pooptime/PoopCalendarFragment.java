@@ -27,7 +27,8 @@ public class PoopCalendarFragment extends Fragment implements OnDateSelectedList
         View v = inflater.inflate(R.layout.fragment_calendar_poop, container, false);
         calendarView = v.findViewById(R.id.calendarView);
         calendarView.setOnDateChangedListener(this);
-        calendarView.addDecorator(new PoopCalendarDayDecorator(getContext()));
+        calendarView.addDecorator(new PoopDayDecorator(getContext()));
+        calendarView.addDecorator(new PoopTodayDecorator(getContext()));
         calendarView.setDateSelected(CalendarDay.today(), true);
         return v;
     }
