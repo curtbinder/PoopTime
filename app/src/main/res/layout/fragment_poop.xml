@@ -161,6 +161,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lastPoopLabel"
         app:layout_constraintTop_toBottomOf="@+id/daysSinceLabel"
-        tools:text="Monday March 1, 2019 3:42 PM" />
+        tools:text="Wednesday\nDecember 31, 2020 03:42 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

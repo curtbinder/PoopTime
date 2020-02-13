@@ -27,7 +27,7 @@
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
     <style name="HeadlineTwoAppearance" parent="@style/TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textStyle">bold</item>
+<!--        <item name="android:textStyle">bold</item>-->
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
     <style name="BodyOneAppearance" parent="@style/TextAppearance.MaterialComponents.Body1">

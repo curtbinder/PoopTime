@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toStartOf="@+id/type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="2020-03-01 12:40 PM" />
+        tools:text="Wednesday\nFebruary 12, 2020 12:40 PM" />
 
     <TextView
         android:id="@+id/type"

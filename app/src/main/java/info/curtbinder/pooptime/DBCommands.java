@@ -31,7 +31,7 @@ public class DBCommands {
 
     // Date format for displaying on screen
     public static SimpleDateFormat getDisplayLongDateFormat() {
-        return new SimpleDateFormat("EEEE, LLLL d, yyyy hh:mm aaa");
+        return new SimpleDateFormat("EEEE\nLLLL d, yyyy hh:mm aaa");
     }
 
     // Formats the date for the DB from the individual times
