@@ -34,3 +34,6 @@ captures/
 
 # Android Studio files
 .idea/
+
+# Releases folder
+app/release/
