@@ -18,4 +18,7 @@
     <string name="about">About</string>
     <string name="calendar">Calendar</string>
     <string name="never">Never</string>
+    <string name="edit_poop_title">Edit Poop</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 </resources>

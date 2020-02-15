@@ -79,6 +79,21 @@ public class DBCommands {
         return getDisplayDate(getLastPoopDate(ctx));
     }
 
+    public ContentValues getPoopInfo(Context ctx, long id) {
+        ContentValues cv = new ContentValues();
+        Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
+                null,
+                null,
+                null);
+        if ( c != null ) {
+            if ( c.moveToFirst() ) {
+
+            }
+            c.close();
+        }
+        return cv;
+    }
+
     public static boolean isPoopLogged(Context ctx, String date) {
         boolean fRet = false;
         Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
