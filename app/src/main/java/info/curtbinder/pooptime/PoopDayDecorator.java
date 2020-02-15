@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 
+import androidx.core.content.ContextCompat;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -18,7 +20,7 @@ public class PoopDayDecorator implements DayViewDecorator {
     public PoopDayDecorator(Context ctx) {
         this.ctx = ctx;
         ShapeDrawable square = new ShapeDrawable(new RectShape());
-        square.getPaint().setColor(ctx.getColor(R.color.primaryColor));
+        square.getPaint().setColor(ContextCompat.getColor(ctx, R.color.primaryColor));
         poopDrawable = square;
     }
 

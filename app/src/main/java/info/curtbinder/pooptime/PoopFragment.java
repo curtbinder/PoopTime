@@ -4,13 +4,7 @@ package info.curtbinder.pooptime;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 public class PoopFragment extends Fragment
     implements View.OnClickListener {
@@ -114,13 +114,12 @@ public class PoopFragment extends Fragment
     }
 
     private void logNow(int type, String notes) {
-        log(DBCommands.getDefaultDateFormat().format(Calendar.getInstance().getTime()), type, notes);
+        log(LocalDateTime.now().format(DBCommands.getDefaultDateFormat()), type, notes);
     }
 
     private void logOther(final int type, final String notes) {
         // display popup prompting for the date
-        Calendar cal = Calendar.getInstance();
-//        cal.add(Calendar.DATE, -1);
+        LocalDate now = LocalDate.now();
         DatePickerDialog dp = new DatePickerDialog(getContext(),
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -128,29 +127,27 @@ public class PoopFragment extends Fragment
                         callTimePicker(year, month, dayOfMonth, type, notes);
                     }
                 },
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH));
+                now.getYear(),
+                now.getMonthValue(),
+                now.getDayOfMonth());
         dp.show();
     }
 
     private void callTimePicker(final int year, final int month, final int dayOfMonth, final int type, final String notes) {
-        Calendar cal = Calendar.getInstance();
+        LocalDateTime now = LocalDateTime.now();
         TimePickerDialog tp = new TimePickerDialog(getContext(),
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         //Log.d(TAG, "Chose: " + hourOfDay + ":" + minute);
-                        Calendar c = Calendar.getInstance();
-                        c.set(year, month, dayOfMonth, hourOfDay, minute);
-                        SimpleDateFormat dft = DBCommands.getDefaultDateFormat();
-                        String timestamp = dft.format(c.getTime());
+                        LocalDateTime cal = LocalDateTime.of(year, month, dayOfMonth, hourOfDay, minute);
+                        String timestamp = cal.format(DBCommands.getDefaultDateFormat());
                         Log.d(TAG, "Chose: " + timestamp);
                         log(timestamp, type, notes);
                     }
                 },
-                cal.get(Calendar.HOUR_OF_DAY),
-                cal.get(Calendar.MINUTE),
+                now.getHour(),
+                now.getMinute(),
                 false
         );
         tp.show();

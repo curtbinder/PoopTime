@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 
+import androidx.core.content.ContextCompat;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -32,7 +34,7 @@ public class PoopTodayDecorator implements DayViewDecorator {
         CalendarDay day = CalendarDay.today();
         String sDate = DBCommands.getDefaultDayOnlyFormatString(day.getDay(), day.getMonth(), day.getYear());
         if (DBCommands.isDayLogged(ctx, sDate)) {
-            oval.getPaint().setColor(ctx.getColor(R.color.primaryColor));
+            oval.getPaint().setColor(ContextCompat.getColor(ctx, R.color.primaryColor));
         } else {
             oval.getPaint().setColor(Color.TRANSPARENT);
         }

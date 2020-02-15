@@ -1,20 +1,14 @@
 package info.curtbinder.pooptime;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.net.Uri;
 
-import java.text.ParseException;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.Period;
+import org.threeten.bp.format.DateTimeFormatter;
 
 public class DBCommands {
 
@@ -25,13 +19,13 @@ public class DBCommands {
     final static Uri MAIN_URI = Uri.parse(DBProvider.CONTENT_URI + "/" + DBProvider.PATH_MAIN);
 
     // Date format stored in DB
-    public static SimpleDateFormat getDefaultDateFormat() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static DateTimeFormatter getDefaultDateFormat() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     }
 
     // Date format for displaying on screen
-    public static SimpleDateFormat getDisplayLongDateFormat() {
-        return new SimpleDateFormat("EEEE\nLLLL d, yyyy hh:mm aaa");
+    public static DateTimeFormatter getDisplayLongDateFormat() {
+        return DateTimeFormatter.ofPattern("EEEE\nLLLL d, yyyy hh:mm a");
     }
 
     // Formats the date for the DB from the individual times
@@ -46,49 +40,24 @@ public class DBCommands {
 
     public static String getDisplayDate(String sDate) {
         // Update format of date be 'Weekday, Month, DD, YYYY HH:MM AM|PM'
-        String s = sDate;
-        if ( s.equals("Never") ) {
+        if ( sDate.equals("Never") ) {
             // if it's never, just return and don't try to parse
-            return s;
+            return sDate;
         }
-        try {
-            // Parse the original date format from database
-            SimpleDateFormat dftOriginal = getDefaultDateFormat();
-            Date d = dftOriginal.parse(s);
-            // Set a calendar instance date/time
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(d);
-            SimpleDateFormat dftDisplay = getDisplayLongDateFormat();
-            // Get updated display from the time
-            s = dftDisplay.format(cal.getTime());
-        } catch (ParseException e) {
-            // unable to parse date, just return the date
-        }
-        return s;
+        // Parse the original date format from database
+        LocalDateTime d = LocalDateTime.parse(sDate, getDefaultDateFormat());
+        // Format the date for display on the screen
+        return d.format(getDisplayLongDateFormat());
     }
 
     public static String getDaysSinceLastPoop(Context ctx) {
-        // Get last poop date
-        // Get current date
-        // Compute days between
-//        long days = 0;
-        LocalDateTime dateLastPoop = null;
-        LocalDateTime dateToday = null;
+        // Compute days between last poop date and current date
         String lastPoopDate = getLastPoopDate(ctx);
-        String today = getDefaultDateFormat().format(Calendar.getInstance().getTime());
-        try {
-            dateLastPoop = LocalDateTime.parse(lastPoopDate);
-            dateToday = LocalDateTime.parse(today);
-        } catch (DateTimeParseException e) {
-            // ignore the parser error
+        if ( lastPoopDate.equals("Never") ) {
+            return "0";
         }
-        Duration duration = Duration.ZERO;
-        if( (dateLastPoop != null) && (dateToday != null) ) {
-//            days = ChronoUnit.DAYS.between(dateLastPoop, dateToday);
-            duration = Duration.between(dateLastPoop, dateToday);
-        }
-        return Long.toString(duration.toDays());
-//        return Long.toString(days);
+        LocalDate dateLastPoop = LocalDate.parse(lastPoopDate, getDefaultDateFormat());
+        return Integer.toString(Period.between(dateLastPoop, LocalDate.now()).getDays());
     }
 
     public static String getLastPoopDate(Context ctx) {
