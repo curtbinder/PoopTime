@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/labelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Date:"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintBottom_toBottomOf="@+id/textDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textDate" />
+
+    <TextView
+        android:id="@+id/textDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintBottom_toBottomOf="@+id/btnChangeDate"
+        app:layout_constraintEnd_toStartOf="@+id/btnChangeDate"
+        app:layout_constraintStart_toEndOf="@+id/labelDate"
+        app:layout_constraintTop_toTopOf="@+id/btnChangeDate"
+        tools:text="December 23, 2020" />
+
+    <Button
+        android:id="@+id/btnChangeDate"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="@dimen/button_image_width"
+        android:layout_height="@dimen/button_image_height"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:icon="@drawable/ic_action_calendar_month"
+        app:iconPadding="0dp"
+        app:iconTint="@color/secondaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Time:"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintBottom_toBottomOf="@+id/textTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textTime" />
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintBottom_toBottomOf="@+id/btnChangeTime"
+        app:layout_constraintEnd_toStartOf="@+id/btnChangeTime"
+        app:layout_constraintStart_toEndOf="@+id/labelTime"
+        app:layout_constraintTop_toTopOf="@+id/btnChangeTime"
+        app:layout_constraintVertical_weight="1"
+        tools:text="12:30 PM" />
+
+    <Button
+        android:id="@+id/btnChangeTime"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="@dimen/button_image_width"
+        android:layout_height="@dimen/button_image_height"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:icon="@drawable/ic_action_clock"
+        app:iconTint="@color/secondaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangeDate" />
+
+    <RadioGroup
+        android:id="@+id/radioPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTime">
+
+        <RadioButton
+            android:id="@+id/radioNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/type_normal" />
+
+        <RadioButton
+            android:id="@+id/radioHard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/type_hard" />
+
+        <RadioButton
+            android:id="@+id/radioLoose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type_loose" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/notes"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioPanel" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/buttonbar_vertical_padding"
+        android:text="Delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/buttonbar_vertical_padding"
+        android:layout_marginEnd="8dp"
+        android:text="Update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/buttonbar_vertical_padding"
+        android:layout_marginEnd="8dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
