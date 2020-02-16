@@ -28,6 +28,16 @@ public class DBCommands {
         return DateTimeFormatter.ofPattern("EEEE\nLLLL d, yyyy hh:mm a");
     }
 
+    // Date format of Date only
+    public static DateTimeFormatter getDateOnlyFormat() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    }
+
+    // Date format of Time only
+    public static DateTimeFormatter getTimeOnlyFormat() {
+        return DateTimeFormatter.ofPattern("hh:mm a");
+    }
+
     // Formats the date for the DB from the individual times
     public static String getDefaultDateFormatString(int day, int month, int year, int hour, int minute) {
         return String.format("%d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
@@ -79,15 +89,18 @@ public class DBCommands {
         return getDisplayDate(getLastPoopDate(ctx));
     }
 
-    public ContentValues getPoopInfo(Context ctx, long id) {
+    public static ContentValues getPoopInfo(Context ctx, long id) {
         ContentValues cv = new ContentValues();
-        Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
+        Uri uri = Uri.withAppendedPath(MAIN_URI, Long.toString(id));
+        Cursor c = ctx.getContentResolver().query(uri, null,
                 null,
                 null,
                 null);
         if ( c != null ) {
             if ( c.moveToFirst() ) {
-
+                cv.put(MainTable.COL_TIMESTAMP, c.getString(c.getColumnIndex(MainTable.COL_TIMESTAMP)));
+                cv.put(MainTable.COL_TYPE, c.getInt(c.getColumnIndex(MainTable.COL_TYPE)));
+                cv.put(MainTable.COL_NOTES, c.getString(c.getColumnIndex(MainTable.COL_NOTES)));
             }
             c.close();
         }
@@ -146,6 +159,10 @@ public class DBCommands {
         }
         lRet = Long.parseLong(s);
         return lRet;
+    }
+
+    public static long updatePoop(Context ctx, ContentValues cv) {
+
     }
 
     public static String getTypeStringFromInt(int type) {

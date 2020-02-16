@@ -48,6 +48,8 @@ public class PoopHistoryFragment extends ListFragment
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 // Prompt to delete the poop
                 Log.d("PoopList", "Long Click - pos: " + pos + ", id: " + id);
+                DialogEditPoop dlg = DialogEditPoop.newInstance(id);
+                dlg.show(getFragmentManager(), "dlgedit");
                 return false;
             }
         });
