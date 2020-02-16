@@ -1,79 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="Application image"
-            android:minWidth="128dp"
-            android:minHeight="128dp"
-            app:srcCompat="@mipmap/ic_launcher" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp">
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_copyright"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                android:contentDescription="Application image"
+                android:minWidth="128dp"
+                android:minHeight="128dp"
+                app:srcCompat="@mipmap/ic_launcher" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_author"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textVersion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_copyright"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
-            <TextView
-                android:id="@+id/textBuild"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_author"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
-            <TextView
-                android:id="@+id/textDBVersion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                <TextView
+                    android:id="@+id/textVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+                <TextView
+                    android:id="@+id/textBuild"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+                <TextView
+                    android:id="@+id/textDBVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/textPageInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/info"
+            android:textAppearance="@style/BodyOneAppearance" />
+
+
     </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
-
-    <TextView
-        android:id="@+id/textPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-</LinearLayout>
+</ScrollView>

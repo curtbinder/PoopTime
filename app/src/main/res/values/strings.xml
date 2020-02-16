@@ -23,4 +23,13 @@
     <string name="update">Update</string>
     <string name="date_label">Date:</string>
     <string name="time_label">Time:</string>
+    <string name="info">This app is designed to help those people who have difficulty pooping.\n\n
+It\'s quick and simple to track when you poop. You can easily view your poop history.
+From the Main page, you can easily log a poop "Now" or from another time (\"Other\").
+You can classify the type of poop and make a note about your poop.\n\n
+You can choose "History" or "Calendar" from the options menu to view the respective page.\n\n
+History - Shows a list of all the poops. If you long-press on the poop, you can edit it.\n\n
+Calendar - Shows a calendar of all the poops. A brown highlighted day indicates a poop was on that day.
+A Circle highlighted day is the current day and it\'s brown if there\'s a poop on the day.
+    </string>
 </resources>

@@ -27,9 +27,6 @@ public class AboutFragment extends Fragment {
         tv = root.findViewById(R.id.textDBVersion);
         s = "DB Version: " + DBHelper.DB_VERSION;
         tv.setText(s);
-        tv = root.findViewById(R.id.textPage);
-        s = "";
-        tv.setText(s);
         return root;
     }
 
