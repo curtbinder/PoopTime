@@ -133,6 +133,21 @@ public class DBCommands {
         return fRet;
     }
 
+    public static int getPoopCountForDay(Context ctx, String date) {
+        int count = 0;
+        Cursor c = ctx.getContentResolver().query(MAIN_URI, null,
+                MainTable.COL_TIMESTAMP + " like '" + date + "%'",
+                null, null);
+        if ( c != null ) {
+            if (c.getCount() > 0) {
+                // logged
+                count = c.getCount();
+            }
+            c.close();
+        }
+        return count;
+    }
+
     public static long logPoop(Context ctx, String date, int type, String notes) {
         long lRet = INVALID;
         if (isPoopLogged(ctx, date)) {
