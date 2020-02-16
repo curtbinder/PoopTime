@@ -36,13 +36,10 @@ public class PoopFragment extends Fragment
     private TextView daysSince;
 
     public PoopFragment() {
-        // Required empty public constructor
     }
 
     public static PoopFragment newInstance() {
-        //String param1, String param2
-        PoopFragment fragment = new PoopFragment();
-        return fragment;
+        return new PoopFragment();
     }
 
     @Override
@@ -87,7 +84,6 @@ public class PoopFragment extends Fragment
         daysSince.setText(s);
         s = DBCommands.getLastPoopDisplayDate(ctx);
         lastPoop.setText(s);
-
     }
 
     @Override
@@ -110,7 +106,7 @@ public class PoopFragment extends Fragment
     private int getTypeFromRadioId(int radioID) {
         RadioButton r = (RadioButton)getActivity().findViewById(radioID);
         String text = r.getText().toString();
-        return DBCommands.getTypeIntFromString(text);
+        return PoopType.getTypeIntFromString(text);
     }
 
     private void logNow(int type, String notes) {
@@ -124,11 +120,11 @@ public class PoopFragment extends Fragment
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        callTimePicker(year, month, dayOfMonth, type, notes);
+                        callTimePicker(year, month+1, dayOfMonth, type, notes);
                     }
                 },
                 now.getYear(),
-                now.getMonthValue(),
+                now.getMonthValue()-1,
                 now.getDayOfMonth());
         dp.show();
     }
@@ -139,7 +135,6 @@ public class PoopFragment extends Fragment
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        //Log.d(TAG, "Chose: " + hourOfDay + ":" + minute);
                         LocalDateTime cal = LocalDateTime.of(year, month, dayOfMonth, hourOfDay, minute);
                         String timestamp = cal.format(DBCommands.getDefaultDateFormat());
                         Log.d(TAG, "Chose: " + timestamp);

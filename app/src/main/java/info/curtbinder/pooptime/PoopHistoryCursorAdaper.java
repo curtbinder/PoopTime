@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cursoradapter.widget.CursorAdapter;
@@ -46,7 +45,7 @@ public class PoopHistoryCursorAdaper extends CursorAdapter {
 
     private void setViews(ViewHolder v, Cursor c) {
         v.timestamp.setText(DBCommands.getDisplayDate(c.getString(c.getColumnIndex(MainTable.COL_TIMESTAMP))));
-        v.type.setText(DBCommands.getTypeStringFromInt(c.getInt(c.getColumnIndex(MainTable.COL_TYPE))));
+        v.type.setText(PoopType.getTypeStringFromInt(c.getInt(c.getColumnIndex(MainTable.COL_TYPE))));
         v.notes.setText(c.getString(c.getColumnIndex(MainTable.COL_NOTES)));
     }
 }

@@ -21,4 +21,6 @@
     <string name="edit_poop_title">Edit Poop</string>
     <string name="delete">Delete</string>
     <string name="update">Update</string>
+    <string name="date_label">Date:</string>
+    <string name="time_label">Time:</string>
 </resources>

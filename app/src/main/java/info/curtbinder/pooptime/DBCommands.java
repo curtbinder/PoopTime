@@ -30,17 +30,12 @@ public class DBCommands {
 
     // Date format of Date only
     public static DateTimeFormatter getDateOnlyFormat() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return DateTimeFormatter.ofPattern("MM-dd-yyyy");
     }
 
     // Date format of Time only
     public static DateTimeFormatter getTimeOnlyFormat() {
         return DateTimeFormatter.ofPattern("hh:mm a");
-    }
-
-    // Formats the date for the DB from the individual times
-    public static String getDefaultDateFormatString(int day, int month, int year, int hour, int minute) {
-        return String.format("%d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
     }
 
     // Formats ONLY the date, ignoring the time
@@ -161,36 +156,14 @@ public class DBCommands {
         return lRet;
     }
 
-    public static long updatePoop(Context ctx, ContentValues cv) {
-
+    public static void updatePoop(Context ctx, long id, ContentValues cv) {
+        Uri uri = Uri.withAppendedPath(MAIN_URI, Long.toString(id));
+        ctx.getContentResolver().update(uri, cv, null, null);
     }
 
-    public static String getTypeStringFromInt(int type) {
-        switch (type) {
-            case 0:
-                return "Normal";
-            case 1:
-                return "Hard";
-            case 2:
-                return "Loose";
-        }
-        return "None";
-    }
-
-    public static int getTypeIntFromString(String type) {
-        int retVal;
-        switch(type) {
-            default:
-            case "Normal":
-                retVal = 0;
-                break;
-            case "Hard":
-                retVal = 1;
-                break;
-            case "Loose":
-                retVal = 2;
-                break;
-        }
-        return retVal;
+    public static void deletePoop(Context ctx, long id) {
+        // deletes the selected poop
+        Uri uri = Uri.withAppendedPath(MAIN_URI, Long.toString(id));
+        ctx.getContentResolver().delete(uri, null, null);
     }
 }

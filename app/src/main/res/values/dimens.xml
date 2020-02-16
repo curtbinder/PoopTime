@@ -2,5 +2,5 @@
 <resources>
     <dimen name="buttonbar_vertical_padding">24dp</dimen>
     <dimen name="button_image_width">48dp</dimen>
-    <dimen name="button_image_height">32dp</dimen>
+    <dimen name="button_image_height">48dp</dimen>
 </resources>
