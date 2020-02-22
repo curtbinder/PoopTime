@@ -2,14 +2,11 @@ package info.curtbinder.pooptime;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNavigateCalendar() {
-        navigateFragment(new PoopCalendarFragment());
+        navigateFragment(new CalendarFragment());
     }
 
     public void onNavigateHistory() {
-        navigateFragment(new PoopHistoryFragment());
+        navigateFragment(new HistoryFragment());
     }
 }
