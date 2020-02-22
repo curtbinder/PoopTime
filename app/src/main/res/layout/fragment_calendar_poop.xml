@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mcv_selectionColor="?android:attr/colorAccent"
         app:mcv_selectionMode="single"
+        app:mcv_tileSize="44dp"
         app:mcv_showOtherDates="all" >
 
     </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
