@@ -28,6 +28,11 @@ public class DBCommands {
         return DateTimeFormatter.ofPattern("EEEE\nLLLL d, yyyy hh:mm a");
     }
 
+    // Date format of Date only in DB Format
+    public static DateTimeFormatter getDBDayOnlyFormat() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    }
+
     // Date format of Date only
     public static DateTimeFormatter getDateOnlyFormat() {
         return DateTimeFormatter.ofPattern("MM-dd-yyyy");
