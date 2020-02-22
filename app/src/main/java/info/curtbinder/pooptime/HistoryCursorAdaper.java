@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.cursoradapter.widget.CursorAdapter;
 
-public class PoopHistoryCursorAdaper extends CursorAdapter {
+public class HistoryCursorAdaper extends CursorAdapter {
 
     static class ViewHolder {
         TextView timestamp;
@@ -19,7 +19,7 @@ public class PoopHistoryCursorAdaper extends CursorAdapter {
 
     Context ctx;
 
-    public PoopHistoryCursorAdaper(Context context, Cursor cursor, int flags) {
+    public HistoryCursorAdaper(Context context, Cursor cursor, int flags) {
         super(context, cursor, flags);
         ctx = context;
     }

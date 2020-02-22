@@ -20,7 +20,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
-public class PoopHistoryFragment extends ListFragment
+public class HistoryFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String[] FROM = {
@@ -75,7 +75,7 @@ public class PoopHistoryFragment extends ListFragment
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         ListAdapter adapter = getListAdapter();
         if ( (adapter == null) || !(adapter instanceof CursorAdapter)) {
-            adapter = new PoopHistoryCursorAdaper(getActivity(), data, 0);
+            adapter = new HistoryCursorAdaper(getActivity(), data, 0);
             setListAdapter(adapter);
         } else {
             ((CursorAdapter) adapter).swapCursor(data);

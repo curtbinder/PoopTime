@@ -11,11 +11,11 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
-public class PoopTodayDecorator implements DayViewDecorator {
+public class TodayDecorator implements DayViewDecorator {
 
     private final Context ctx;
 
-    public PoopTodayDecorator(Context ctx) {
+    public TodayDecorator(Context ctx) {
         this.ctx = ctx;
     }
 

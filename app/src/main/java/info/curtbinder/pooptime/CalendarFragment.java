@@ -16,7 +16,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-public class PoopCalendarFragment extends Fragment implements OnDateSelectedListener {
+public class CalendarFragment extends Fragment implements OnDateSelectedListener {
 
     private MaterialCalendarView calendarView;
 
@@ -27,8 +27,8 @@ public class PoopCalendarFragment extends Fragment implements OnDateSelectedList
         View v = inflater.inflate(R.layout.fragment_calendar_poop, container, false);
         calendarView = v.findViewById(R.id.calendarView);
         calendarView.setOnDateChangedListener(this);
-        calendarView.addDecorator(new PoopDayDecorator(getContext()));
-        calendarView.addDecorator(new PoopTodayDecorator(getContext()));
+        calendarView.addDecorator(new DayDecorator(getContext()));
+        calendarView.addDecorator(new TodayDecorator(getContext()));
         calendarView.setDateSelected(CalendarDay.today(), true);
         return v;
     }

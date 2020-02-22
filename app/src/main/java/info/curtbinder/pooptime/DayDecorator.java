@@ -13,7 +13,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
-public class PoopDayDecorator implements DayViewDecorator {
+public class DayDecorator implements DayViewDecorator {
 
     private final Context ctx;
 //    private final int bgColor;
@@ -24,7 +24,7 @@ public class PoopDayDecorator implements DayViewDecorator {
     private Drawable bg;
     private int inset;
 
-    public PoopDayDecorator(Context ctx) {
+    public DayDecorator(Context ctx) {
         this.ctx = ctx;
 //        bgColor = ContextCompat.getColor(ctx, R.color.primaryColor);
 //        dayCount = 0;
