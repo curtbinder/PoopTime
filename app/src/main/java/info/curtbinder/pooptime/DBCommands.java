@@ -207,4 +207,10 @@ public class DBCommands {
         Uri uri = Uri.withAppendedPath(MAIN_URI, Long.toString(id));
         ctx.getContentResolver().delete(uri, null, null);
     }
+
+    public static Cursor getAllPoops(Context ctx) {
+        return ctx.getContentResolver().query(MAIN_URI, null,
+                null, null,
+                MainTable.COL_TIMESTAMP + " DESC");
+    }
 }

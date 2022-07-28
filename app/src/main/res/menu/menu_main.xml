@@ -26,15 +26,25 @@
     <item
         android:id="@+id/action_history"
         android:icon="@drawable/ic_action_book"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:orderInCategory="100"
         android:title="@string/history" />
     <item
         android:id="@+id/action_calendar"
         android:icon="@drawable/ic_action_calendar_month_white"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:orderInCategory="110"
         android:title="@string/calendar" />
+    <item
+        android:id="@+id/action_export"
+        app:showAsAction="never"
+        android:orderInCategory="300"
+        android:title="@string/export_db" />
+    <item
+        android:id="@+id/action_import"
+        app:showAsAction="never"
+        android:orderInCategory="350"
+        android:title="@string/import_db" />
     <item
         android:id="@+id/action_about"
         android:orderInCategory="999"

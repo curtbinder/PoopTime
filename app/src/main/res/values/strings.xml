@@ -52,6 +52,13 @@ You can classify the type of poop and make a note about your poop.\n\n
 You can choose "History" or "Calendar" from the options menu to view the respective page.\n\n
 History - Shows a list of all the poops. If you long-press on the poop, you can edit it.\n\n
 Calendar - Shows a calendar of all the poops. A brown highlighted day indicates a poop was on that day.
-A Circle highlighted day is the current day and it\'s brown if there\'s a poop on the day.
+A Circle highlighted day is the current day and it\'s brown if there\'s a poop on the day.\n\n
+Export... - Exports all the poops to a CSV file.\n\n
+Import... - Imports the poops contained in a CSV file. This will only add the poops from the file
+if they are not already logged. If they already exist, they are simply skipped.
     </string>
+    <string name="export_db">Export…</string>
+    <string name="import_db">Import…</string>
+    <string name="exported_poops">Exported all poops</string>
+    <string name="imported_poops">Imported %1$d poops</string>
 </resources>
