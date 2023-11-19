@@ -38,6 +38,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -170,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
             if (pfd != null) {
                 try (Cursor c = DBCommands.getAllPoops(getApplicationContext())) {
                     CSVWriter writer = new CSVWriter(new FileWriter(pfd.getFileDescriptor()));
+                    // Write header line
+                    writer.writeNext(new String[]{MainTable.COL_TIMESTAMP, MainTable.COL_TYPE, MainTable.COL_NOTES});
                     String ts, type, notes;
                     while (c.moveToNext()) {
                         // get the fields and create a line
@@ -208,10 +211,34 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     CSVReader reader = new CSVReader(new FileReader(pfd.getFileDescriptor()));
                     String [] nextLine;
+                    int lines = 0;
+                    // Locate the index for the columns
+                    int ts_index = 0, type_index = 1, notes_index = 2;
                     while ((nextLine = reader.readNext()) != null) {
-                        if (DBCommands.logPoop(this, nextLine[0], Integer.parseInt(nextLine[1]), nextLine[2]) > DBCommands.INVALID) {
-                            // only count the ones that are not invalid when importing
-                            count++;
+                        if ( lines == 0 ) {
+                            // first line contains column information
+                            for (int x = 0; x < nextLine.length; x++ ) {
+                                if (nextLine[x].compareToIgnoreCase(MainTable.COL_TIMESTAMP) == 0) {
+                                    ts_index = x;
+                                } else if (nextLine[x].compareToIgnoreCase(MainTable.COL_TYPE) == 0) {
+                                    type_index = x;
+                                } else if (nextLine[x].compareToIgnoreCase(MainTable.COL_NOTES) == 0) {
+                                    notes_index = x;
+                                }
+                            }
+                            lines++;
+                        } else {
+                            if (nextLine.length < 3) {
+                                // too few columns, skip
+                                Log.d("IMPORT", "INVALID import entry: '" + nextLine + "'");
+                                continue;
+                            }
+                            if (DBCommands.logPoop(this, nextLine[ts_index],
+                                    Integer.parseInt(nextLine[type_index]),
+                                    nextLine[notes_index]) > DBCommands.INVALID) {
+                                // only count the ones that are not invalid when importing
+                                count++;
+                            }
                         }
                     }
                 } catch (IOException | CsvValidationException e) {
