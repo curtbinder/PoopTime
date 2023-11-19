@@ -47,15 +47,17 @@
     <string name="time_label">Time:</string>
     <string name="info">This app is designed to help those people who have difficulty pooping.\n\n
 It\'s quick and simple to track when you poop. You can easily view your poop history.
-From the Main page, you can easily log a poop "Now" or from another time (\"Other\").
+From the Main page, you can log a poop "Now" or from another time (\"Other\").
 You can classify the type of poop and make a note about your poop.\n\n
 You can choose "History" or "Calendar" from the options menu to view the respective page.\n\n
-History - Shows a list of all the poops. If you long-press on the poop, you can edit it.\n\n
-Calendar - Shows a calendar of all the poops. A brown highlighted day indicates a poop was on that day.
+History - Shows a list of all the poops. If you long-press on the poop, you can edit or delete it.\n\n
+Calendar - Shows a calendar of all the poops. A brown highlighted day indicates a poop was on that day.\n\n
 A Circle highlighted day is the current day and it\'s brown if there\'s a poop on the day.\n\n
 Export... - Exports all the poops to a CSV file.\n\n
 Import... - Imports the poops contained in a CSV file. This will only add the poops from the file
-if they are not already logged. If they already exist, they are simply skipped.
+if they are not already logged. If they already exist, they are simply skipped.\n\n
+All data is stored in the app and no data is ever transmitted from your device.\n
+This app requires no special permissions and does not use the internet for anything.
     </string>
     <string name="export_db">Export…</string>
     <string name="import_db">Import…</string>
